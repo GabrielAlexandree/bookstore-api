@@ -12,21 +12,35 @@ import com.gabriel.bookstore.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class LivroService {
-	
+
 	@Autowired
-	private LivroRepository repository;//faz a comunicacao com a base de dados  vai iniciar mostrar e destruir essa instancia 
-	
+	private LivroRepository repository;// faz a comunicacao com a base de dados vai iniciar mostrar e destruir essa
+										// instancia
+
 	@Autowired
 	private CategoriaService categoriaService;
 
 	public Livro findById(Integer id) {
 		Optional<Livro> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não Encontrado! ID : "  + id + ", Tipo: " + Livro.class.getName()));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não Encontrado! ID : " + id + ", Tipo: " + Livro.class.getName()));
 	}
 
 	public List<Livro> findAll(Integer id_cat) {
 		categoriaService.findById(id_cat);
 		return repository.findAllByCategoria(id_cat);
 	}
-	
+
+	public Livro update(Integer id, Livro obj) {
+		Livro newObj = findById(id);
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+
+	private void updateData(Livro newObj, Livro obj) {
+		newObj.setTitulo(obj.getTitulo());
+		newObj.setNome_autor(obj.getNome_autor());
+		newObj.setTexto(obj.getTexto());
+	}
+
 }
