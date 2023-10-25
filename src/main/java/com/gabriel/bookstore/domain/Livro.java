@@ -2,6 +2,8 @@ package com.gabriel.bookstore.domain;
 
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Livro {
@@ -19,7 +22,14 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty(message = "Campo TITULO requerido!")
+	@Length(min = 3, max = 50 , message = "O campo TITULO deve ter entre 3 a 50 caracteres!")
 	private String titulo;
+	
+	
+	@NotEmpty(message = "Campo NOME DO AUTOR requerido!")
+	@Length(min = 10, max = 2000000 , message = "O campo NOME DO AUTOR  deve ter entre 3 a 2.000.000 caracteres!")
 	private String nome_autor;
 
 	public Livro() {

@@ -23,8 +23,8 @@ public class DBService {
 		Categoria terror = new Categoria(null, "Terror", "Livro de Informatica");
 		Categoria infantil = new Categoria(null, "Infantil", "Livros Infantis");
 
-		Livro it = new Livro(null, "It", "Stephen King", "lorem ipsum", terror);
-		Livro turmaDaMonica = new Livro(null, "Tuma da Monica", "Mauricio de Sousa", "lorem ipsum", infantil);
+		Livro it = new Livro(null, "It a coisa", "Stephen King", "lorem ipsum texto texto", terror);
+		Livro turmaDaMonica = new Livro(null, "Tuma da Monica", "Mauricio de Sousa", "lorem ipsum texto texto", infantil);
 
 		terror.getLivros().addAll(Arrays.asList(it));
 		infantil.getLivros().addAll(Arrays.asList(turmaDaMonica));
